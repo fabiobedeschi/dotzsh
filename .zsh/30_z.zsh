@@ -1,1 +1,1 @@
-[[ -r "$(brew --prefix z)/etc/profile.d/z.sh" ]] && source $(brew --prefix z)/etc/profile.d/z.sh
+[[ -r "$Z4H/rupa/z/z.sh" ]] && source "$Z4H/rupa/z/z.sh"
