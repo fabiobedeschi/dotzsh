@@ -20,7 +20,7 @@ export LESS='-FR'
 export AWS_PAGER=$PAGER
 
 # mobymac dockerhost
-export DOCKER_HOST='tcp://192.168.56.2:2376'
+# export DOCKER_HOST='tcp://192.168.56.2:2376'
 
 # Color howdoi prompt
 export HOWDOI_COLORIZE=1
