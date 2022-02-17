@@ -24,3 +24,6 @@ export AWS_PAGER=$PAGER
 
 # Color howdoi prompt
 export HOWDOI_COLORIZE=1
+
+# Stop powerlevel10k wizard
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
