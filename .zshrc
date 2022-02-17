@@ -61,7 +61,6 @@ zstyle ':z4h:term-title:local' precmd  '%~'
 # up-to-date. Cloned files can be used after `z4h init`. This is just an
 # example. If you don't plan to use Oh My Zsh, delete this line.
 # z4h install ohmyzsh/ohmyzsh || return
-z4h install rupa/z || return
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
