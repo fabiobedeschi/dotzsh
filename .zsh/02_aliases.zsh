@@ -227,16 +227,16 @@ alias hs='history | grep -i'
 
 alias https='http --default-scheme=https'
 
-alias ls='ls -FhG'
+alias ls='ls -FhG --color=always'
 alias ll='ls -lFh'
 alias lS='ls -1FSsh'
-alias la='ls -lAFh'
+alias la='ls -laFh'
 alias lart='ls -1Fcart'
-alias ldot='ls -ld .*'
+alias l.='ls -ld .*'
 alias lr='ls -tRFh'
 alias lrt='ls -1Fcrt'
 alias lsn='ls -1'
-alias lsr='ls -lARFh'
+alias lsr='ls -laRFh'
 alias lt='ls -ltFh'
 alias l=ll
 
