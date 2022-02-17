@@ -9,6 +9,6 @@ Assuming your current shell is `zsh`:
 ```zsh
 git clone https://github.com/fabiobedeschi/dotzsh.git
 cd dotzsh
-ln -s $(pwd)/{.zshrc,.zshenv,.p10k.zsh,.zsh} $HOME
+ln -s $(pwd)/{.zsh*,.p10k*.zsh} $HOME
 exec zsh
 ```
