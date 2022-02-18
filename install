@@ -1,5 +1,7 @@
 #! /usr/bin/env zsh
+
 ln -sFi $(pwd)/{.zsh*,.p10k*.zsh} $HOME
+mkdir -p $HOME/bin
 ln -sFi $(pwd)/update $HOME/bin/update_zsh
 source $HOME/{.zshenv,.zshrc}
 

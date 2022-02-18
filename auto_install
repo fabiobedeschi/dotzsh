@@ -1,0 +1,6 @@
+#! /usr/bin/env zsh
+
+git clone https://github.com/fabiobedeschi/dotzsh.git $HOME/dotzsh
+cd $HOME/dotzsh
+chmod +x install update
+./install
