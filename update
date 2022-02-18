@@ -1,0 +1,7 @@
+#! /usr/bin/env zsh
+
+git fetch --all --prune
+git pull --rebase --autostash
+source $HOME/{.zshenv,.zshrc}
+
+echo "Start a new terminal session and profit!"

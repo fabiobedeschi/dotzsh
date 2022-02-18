@@ -9,6 +9,18 @@ Assuming your current shell is `zsh`:
 ```zsh
 git clone https://github.com/fabiobedeschi/dotzsh.git
 cd dotzsh
-ln -s $(pwd)/{.zsh*,.p10k*.zsh} $HOME
-exec zsh
+chmod +x install update
+./install
 ```
+
+## Update
+
+After the installation simply run:
+
+```zsh
+update_zsh
+```
+
+### Notes
+
+- `z4h` keep his update mechanism separated. Fot this run `z4h update`
