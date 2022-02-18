@@ -1,9 +1,9 @@
 #! /usr/bin/env sh
 
-ln -sFi $(pwd)/{.zsh*,.p10k*.zsh} $HOME
+ln -sFi $(pwd)/.zsh* $(pwd)/.p10k*.zsh $HOME
 mkdir -p $HOME/bin
 ln -sFi $(pwd)/update $HOME/bin/update_zsh
-. $HOME/{.zshenv,.zshrc}
 
-echo "Start a new terminal session and profit!"
+./update
+
 echo "Fetch new updated with 'update_zsh'"
