@@ -3,7 +3,7 @@
 ln -sFi $(pwd)/{.zsh*,.p10k*.zsh} $HOME
 mkdir -p $HOME/bin
 ln -sFi $(pwd)/update $HOME/bin/update_zsh
-source $HOME/{.zshenv,.zshrc}
+. $HOME/{.zshenv,.zshrc}
 
 echo "Start a new terminal session and profit!"
 echo "Fetch new updated with 'update_zsh'"
