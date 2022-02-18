@@ -4,10 +4,10 @@ My zsh configuration based on the awesome [zsh 4 humans](https://github.com/romk
 
 ## Install
 
-Assuming your current shell is `zsh`:
+Assuming you have `git` installed on your system:
 
 ```sh
-git clone https://github.com/fabiobedeschi/dotzsh.git $HOME
+git clone https://github.com/fabiobedeschi/dotzsh.git $HOME/dotzsh
 cd $HOME/dotzsh
 chmod +x install update
 ./install
@@ -33,4 +33,4 @@ update_zsh
 
 ## Notes
 
-- `z4h` keep his update mechanism separated. Fot this run `z4h update`
+- `z4h` keeps his update mechanism separated, use `z4h update` for that.
