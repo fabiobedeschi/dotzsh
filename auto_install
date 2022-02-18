@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#! /usr/bin/env sh
 
 git clone https://github.com/fabiobedeschi/dotzsh.git $HOME/dotzsh
 cd $HOME/dotzsh

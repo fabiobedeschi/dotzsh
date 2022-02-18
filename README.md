@@ -6,7 +6,7 @@ My zsh configuration based on the awesome [zsh 4 humans](https://github.com/romk
 
 Assuming your current shell is `zsh`:
 
-```zsh
+```sh
 git clone https://github.com/fabiobedeschi/dotzsh.git $HOME
 cd $HOME/dotzsh
 chmod +x install update
@@ -15,11 +15,11 @@ chmod +x install update
 
 ### Automatic install (not tested)
 
-```zsh
+```sh
 if command -v curl >/dev/null 2>&1; then
-  zsh -c "$(curl -fsSL https://raw.githubusercontent.com/fabiobedeschi/dotzsh/master/auto_install)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/fabiobedeschi/dotzsh/master/auto_install)"
 else
-  zsh -c "$(wget -O- https://raw.githubusercontent.com/fabiobedeschi/dotzsh/master/auto_install)"
+  sh -c "$(wget -O- https://raw.githubusercontent.com/fabiobedeschi/dotzsh/master/auto_install)"
 fi
 ```
 
@@ -27,7 +27,7 @@ fi
 
 After the installation simply run:
 
-```zsh
+```sh
 update_zsh
 ```
 
