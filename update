@@ -1,7 +1,6 @@
 #! /usr/bin/env sh
 
-git fetch --all --prune
-git pull --rebase --autostash
-. $HOME/.zshenv $HOME/.zshrc
+git --git-dir="$HOME/dotzsh/.git" fetch --all --prune
+git --git-dir="$HOME/dotzsh/.git" pull --rebase --autostash
 
 echo "Start a new terminal session and profit!"
