@@ -8,13 +8,16 @@ fi
 # Paginator
 if type bat &>/dev/null; then
 	export CAT='bat -p'
+	export FZF_CAT='bat --color=always --style=numbers --line-range=:500 {}'
 	export PAGER=$CAT
 elif type batcat &>/dev/null; then
 	alias bat=batcat
 	export CAT='bat -p'
+	export FZF_CAT='bat --color=always --style=numbers --line-range=:500 {}'
 	export PAGER=$CAT
 else
 	export CAT='cat'
+	export FZF_CAT='cat {}'
 	export PAGER='less'
 fi
 
