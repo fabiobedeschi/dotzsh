@@ -1,3 +1,6 @@
+# Automatic ls after cd-ing into a directory
+function cd() { builtin cd "$@" && ls }
+
 # Define functions and completions.
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md

@@ -17,8 +17,8 @@ alias bubc='brew upgrade && brew cleanup'
 alias bubo='brew update && brew outdated'
 alias bubu='bubo && bubc'
 alias buf='brew upgrade --formula'
-# alias code='open -b com.microsoft.VSCode'
 
+alias cat="${CAT:-cat}"
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
