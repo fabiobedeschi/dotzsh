@@ -1,1 +1,1 @@
-[[ -r "$Z4H/rupa/z/z.sh" ]] && source "$Z4H/rupa/z/z.sh"
+[[ -r "$Z4H/agkozak/zsh-z/zsh-z.plugin.zsh" ]] && source "$Z4H/agkozak/zsh-z/zsh-z.plugin.zsh"
