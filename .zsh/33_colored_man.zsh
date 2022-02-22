@@ -1,6 +1,5 @@
 # Requires colors autoload.
 # See termcap(5).
-autoload -Uz colors && colors
 
 # Set up once, and then reuse. This way it supports user overrides after the
 # plugin is loaded.

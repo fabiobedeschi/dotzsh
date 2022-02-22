@@ -79,7 +79,7 @@ fpath=(~/.zsh/completions $fpath)
 export GPG_TTY=$TTY
 
 # Source additional local files if they exist.
-z4h source ~/.zsh/??_*
+z4h source $HOME/.zsh/??_*.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
 #
@@ -100,6 +100,7 @@ z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
 
 # Autoload functions.
 autoload -Uz zmv
+autoload -Uz colors && colors
 
 # Define named directories: ~w <=> Windows home directory on WSL.
 [[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
