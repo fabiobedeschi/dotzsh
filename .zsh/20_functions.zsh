@@ -1,5 +1,15 @@
 # Automatic ls after cd-ing into a directory
-function cd() { builtin cd "$@" && ls }
+function chpwd() {
+	emulate -L zsh
+	$aliases[ls]
+}
+
+# Keep a newline between commands
+function precmd() {
+	function precmd() {
+		echo ''
+	}
+}
 
 # Define functions and completions.
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
