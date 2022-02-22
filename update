@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
 
-git --git-dir="$HOME/dotzsh/.git" fetch --all --prune
-git --git-dir="$HOME/dotzsh/.git" pull --rebase
+_prev_location="$PWD"
+cd "$HOME/dotzsh"
+git fetch --all --prune && git pull --rebase
+cd "$_prev_location"
 
 echo "Start a new terminal session and profit!"
