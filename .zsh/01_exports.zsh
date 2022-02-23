@@ -21,7 +21,8 @@ else
 	export PAGER='less'
 fi
 
-export LESS='-FR --mouse'
+# add "--mouse" option if tmux is enabled
+export LESS='-FR'
 export AWS_PAGER=$PAGER
 
 # Color howdoi prompt

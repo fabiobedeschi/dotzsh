@@ -1,8 +1,9 @@
 # Automatic ls after cd-ing into a directory
-function chpwd() {
+function _cdls() {
 	emulate -L zsh
 	$aliases[ls]
 }
+# chpwd_functions=( _cdls ${chpwd_functions[@]} )
 
 # Keep a newline between commands
 function precmd() {
