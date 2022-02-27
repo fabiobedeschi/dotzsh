@@ -5,13 +5,6 @@ function _cdls() {
 }
 # chpwd_functions=( _cdls ${chpwd_functions[@]} )
 
-# Keep a newline between commands
-function precmd() {
-	function precmd() {
-		echo ''
-	}
-}
-
 # Define functions and completions.
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
