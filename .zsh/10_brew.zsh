@@ -3,6 +3,7 @@ if type brew &>/dev/null; then
 	path=(
 		$(brew --prefix libpq)/bin
 		$(brew --prefix bzip2)/bin
+		$(brew --prefix coreutils)/libexec/gnubin
 		$path
 	)
 fi
