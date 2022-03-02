@@ -61,7 +61,20 @@ zstyle ':z4h:term-title:local' precmd  '%~'
 # up-to-date. Cloned files can be used after `z4h init`. This is just an
 # example. If you don't plan to use Oh My Zsh, delete this line.
 # z4h install ohmyzsh/ohmyzsh || return
-z4h install agkozak/zsh-z || return
+_gh_repos=(
+    agkozak/zsh-z
+    jenv/jenv
+    nodenv/nodenv
+    phpenv/phpenv
+    php-build/php-build
+    pyenv/pyenv
+    pyenv/pyenv-virtualenv
+    rbenv/rbenv
+)
+for r in $_gh_repos; do
+    z4h install $r || return
+done
+unset _gh_repos
 
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable until Zsh
