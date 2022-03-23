@@ -26,7 +26,6 @@ alias t='tail -f'
 alias p='ps -f'
 alias mmv='noglob zmv -W'
 
-alias docker-compose='docker compose'
 alias dcb='docker-compose build'
 alias dcdn='docker-compose down'
 alias dce='docker-compose exec'
