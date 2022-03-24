@@ -63,13 +63,6 @@ zstyle ':z4h:term-title:local' precmd  '%~'
 # z4h install ohmyzsh/ohmyzsh || return
 _gh_repos=(
     agkozak/zsh-z
-    jenv/jenv
-    nodenv/nodenv
-    phpenv/phpenv
-    php-build/php-build
-    pyenv/pyenv
-    pyenv/pyenv-virtualenv
-    rbenv/rbenv
 )
 for r in $_gh_repos; do
     z4h install $r || return
