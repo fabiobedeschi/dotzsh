@@ -26,13 +26,13 @@ alias t='tail -f'
 alias p='ps -f'
 alias mmv='noglob zmv -W'
 
+alias dco=docker-compose
 alias dcb='docker-compose build'
 alias dcdn='docker-compose down'
 alias dce='docker-compose exec'
 alias dck='docker-compose kill'
 alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
-alias dco=docker-compose
 alias dcps='docker-compose ps'
 alias dcpull='docker-compose pull'
 alias dcr='docker-compose run'
