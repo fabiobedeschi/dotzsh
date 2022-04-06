@@ -60,7 +60,6 @@ function uuid_usage {
     echo "\t      --no-dashes\t$(uuid --no-dashes)"
     echo ""
 }
-
 function uuid {
 	local gen_uuid=${$(uuidgen):l}
 	while [ "$1" != "" ]; do
@@ -94,14 +93,59 @@ function uuid {
 	fi
 }
 
+# General purpose map function
+function map {
+	cmd="$1"; shift
+	for arg in $@
+	do 
+		$cmd $arg
+	done
+}
+
 # Rename file to <basename>.bak
 function bak {
-  	mv "$1" "$(dirname $1)/$(basename $1 .bak).bak"
+	function _bak {
+		if [[ "$(basename $1)" != *.bak ]]; then
+			new_name="$(dirname $1)/$(basename $1).bak"
+			mv "$1" "$new_name"
+			echo "$1\t-->\t$new_name"
+		fi
+	}
+	map _bak $@
+}
+# Inverse function of "bak"
+function debak {
+	function _debak {
+		if [[ "$(basename $1)" == *.bak ]]; then
+			new_name="$(dirname $1)/$(basename $1 .bak)"
+			mv "$1" "$new_name"
+			echo "$1\t-->\t$new_name"
+		fi
+	}
+	map _debak $@
 }
 
 # Hide file prepending a dot
 function hide {
-	mv "$1" "$(dirname $1)/.$(basename $1)"
+	function _hide {
+		if [[ "$(basename $1)" != .* ]]; then
+			new_name="$(dirname $1)/.$(basename $1)"
+			mv "$1" "$new_name"
+			echo "$1\t-->\t$new_name"
+		fi
+	}
+	map _hide $@
+}
+# Inverse function of "hide"
+function dehide {
+	function _dehide {
+		if [[ "$(basename $1)" == .* ]]; then
+			new_name="$(dirname $1)/${$(basename $1):1}"
+			mv "$1" "$new_name"
+			echo "$1\t-->\t$new_name"
+		fi
+	}
+	map _dehide $@
 }
 
 # merge ${@:2} pdf files in $1 single pdf
