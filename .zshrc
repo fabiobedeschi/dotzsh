@@ -77,7 +77,7 @@ unset _gh_repos
 z4h init || return
 
 # Extend PATH
-path=(~/bin ~/opt /usr/local/bin /usr/local/sbin $path)
+path=(~/opt ~/bin /usr/local/opt/*/bin /usr/local/bin /usr/local/sbin $path)
 
 # Extend FPATH
 fpath=(~/.zsh/completions $fpath)
