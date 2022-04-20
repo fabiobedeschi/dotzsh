@@ -1,5 +1,5 @@
 export RBENV_ROOT="$HOME/.rbenv"
-if [ -d "$RBENV_ROOT" ]; then
+if type rbenv &>/dev/null; then
     export PATH="$RBENV_ROOT/bin:$PATH"
     eval "$(rbenv init -)"
 

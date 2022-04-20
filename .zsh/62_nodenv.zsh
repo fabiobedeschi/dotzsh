@@ -1,5 +1,5 @@
 export NODENV_ROOT="$HOME/.nodenv"
-if [ -d "$NODENV_ROOT" ]; then
+if type nodenv &>/dev/null; then
     export PATH="$NODENV_ROOT/bin:$PATH"
     eval "$(nodenv init -)"
 

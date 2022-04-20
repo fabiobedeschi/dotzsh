@@ -1,5 +1,5 @@
 export JENV_ROOT="$HOME/.jenv"
-if [ -d "$JENV_ROOT" ]; then
+if type jenv &>/dev/null; then
     export PATH="$JENV_ROOT/bin:$PATH"
     eval "$(jenv init -)"
 
