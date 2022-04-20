@@ -59,7 +59,7 @@ alias hs='history | grep -i'
 
 alias https='http --default-scheme=https'
 
-alias ls='ls -FhG --color=always'
+alias ls='ls -FhG --color=always --group-directories-first'
 alias ll='ls -lFh'
 alias lS='ls -1FSsh'
 alias la='ls -laFh'
