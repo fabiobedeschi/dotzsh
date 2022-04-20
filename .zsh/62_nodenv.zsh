@@ -1,7 +1,8 @@
 export NODENV_ROOT="$HOME/.nodenv"
+export PATH="$NODENV_ROOT/bin:$PATH"
+
 if type nodenv &>/dev/null; then
-    export PATH="$NODENV_ROOT/bin:$PATH"
-    eval "$(nodenv init -)"
+    _evalcache nodenv init -
 
     if [ ! -d "$HOME/.nodenv" ]; then
         ln -sFi "$NODENV_ROOT" "$HOME/.nodenv"

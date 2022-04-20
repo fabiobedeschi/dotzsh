@@ -1,7 +1,8 @@
 export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+
 if type rbenv &>/dev/null; then
-    export PATH="$RBENV_ROOT/bin:$PATH"
-    eval "$(rbenv init -)"
+    _evalcache rbenv init -
 
     if [ ! -d "$HOME/.rbenv" ]; then
         ln -sFi "$RBENV_ROOT" "$HOME/.rbenv"

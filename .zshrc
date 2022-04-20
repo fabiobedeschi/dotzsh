@@ -64,6 +64,7 @@ zstyle ':z4h:term-title:local' precmd  '%~'
 _gh_repos=(
 	# owner/repo_name
     agkozak/zsh-z
+    mroth/evalcache
 )
 for r in $_gh_repos; do
     z4h install $r || return
