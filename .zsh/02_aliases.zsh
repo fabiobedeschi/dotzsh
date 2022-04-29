@@ -99,7 +99,8 @@ alias pipir='pip install -r requirements.txt'
 alias pipreq='pip freeze > requirements.txt'
 alias python=python3
 
-alias rubies='rbenv versions'
+alias tf=terraform
+
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias sortnr='sort -n -r'
 alias unexport=unset
