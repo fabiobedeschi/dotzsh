@@ -13,6 +13,9 @@ git_version="${${(As: :)$(git version 2>/dev/null)}[3]}"
 function current_branch() {
   git_current_branch
 }
+function git_current_branch() {
+  git branch --show-current
+}
 
 # Pretty log messages
 function _git_log_prettily(){
