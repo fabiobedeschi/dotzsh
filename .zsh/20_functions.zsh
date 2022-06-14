@@ -5,6 +5,15 @@ function _cdls() {
 }
 # chpwd_functions=( _cdls ${chpwd_functions[@]} )
 
+# Prettify the output of "echo $PATH"
+function ppath() {
+	local _div='\n'
+	if [ ! -z "$1" ]; then
+		_div="$1"
+	fi
+	echo $PATH | sed "s/:/$_div/g"
+}
+
 # Define functions and completions.
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
@@ -97,7 +106,7 @@ function uuid {
 function map {
 	cmd="$1"; shift
 	for arg in $@
-	do 
+	do
 		$cmd $arg
 	done
 }
