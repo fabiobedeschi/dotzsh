@@ -21,6 +21,11 @@ else
 	export PAGER='less'
 fi
 
+# Enable java windows in sway
+if [[ -n $SWAYSOCK ]]; then
+	export _JAVA_AWT_WM_NONREPARENTING=1
+fi
+
 # add "--mouse" option if tmux is enabled
 export LESS='-FR'
 export AWS_PAGER=$PAGER
