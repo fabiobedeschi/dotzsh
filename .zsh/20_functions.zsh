@@ -113,48 +113,52 @@ function map {
 
 # Rename file to <basename>.bak
 function bak {
-	function _bak {
+	function _add_bak {
 		if [[ "$(basename $1)" != *.bak ]]; then
 			new_name="$(dirname $1)/$(basename $1).bak"
-			mv "$1" "$new_name"
-			echo "$1\t-->\t$new_name"
+			mv "$1" "$new_name" && echo "$1\t-->\t$new_name"
 		fi
 	}
-	map _bak $@
-}
-# Inverse function of "bak"
-function debak {
-	function _debak {
+
+	function _rm_bak {
 		if [[ "$(basename $1)" == *.bak ]]; then
 			new_name="$(dirname $1)/$(basename $1 .bak)"
-			mv "$1" "$new_name"
-			echo "$1\t-->\t$new_name"
+			mv "$1" "$new_name" && echo "$1\t-->\t$new_name"
 		fi
 	}
-	map _debak $@
+	local _rm_flags=(-r --rm --remove -R)
+
+	if (( ${_rm_flags[(I)$1]} )); then
+		shift
+		map _rm_bak $@
+	else
+		map _add_bak $@
+	fi
 }
 
 # Hide file prepending a dot
-function hide {
+function dotf {
 	function _hide {
 		if [[ "$(basename $1)" != .* ]]; then
 			new_name="$(dirname $1)/.$(basename $1)"
-			mv "$1" "$new_name"
-			echo "$1\t-->\t$new_name"
+			mv "$1" "$new_name" && echo "$1\t-->\t$new_name"
 		fi
 	}
-	map _hide $@
-}
-# Inverse function of "hide"
-function dehide {
-	function _dehide {
+
+	function _show {
 		if [[ "$(basename $1)" == .* ]]; then
 			new_name="$(dirname $1)/${$(basename $1):1}"
-			mv "$1" "$new_name"
-			echo "$1\t-->\t$new_name"
+			mv "$1" "$new_name" && echo "$1\t-->\t$new_name"
 		fi
 	}
-	map _dehide $@
+	local _rm_flags=(-r --rm --remove -R)
+
+	if (( ${_rm_flags[(I)$1]} )); then
+		shift
+		map _show $@
+	else
+		map _hide $@
+	fi
 }
 
 # merge ${@:2} pdf files in $1 single pdf
