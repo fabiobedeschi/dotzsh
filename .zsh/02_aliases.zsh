@@ -46,7 +46,7 @@ alias dcupd='docker-compose up -d'
 
 alias f=fuck
 
-alias fzf='fzf --preview "${FZF_CAT}"'
+alias fzfp='fzf --preview "${FZF_CAT}"'
 alias gemsets='rbenv gemset list'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
