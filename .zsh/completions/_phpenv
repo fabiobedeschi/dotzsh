@@ -1,0 +1,28 @@
+#compdef phpenv
+if [[ ! -o interactive ]]; then
+    return
+fi
+
+local state line
+typeset -A opt_args
+
+_arguments -C \
+    {--help,-h}'[Show help]' \
+    {--version,-v}'[Show phpenv version]' \
+    '(-): :->command' \
+    '*:: :->option-or-argument'
+
+case "$state" in
+    (command)
+        local -a commands
+        commands=(${(f)"$(phpenv commands)"})
+        _describe -t commands 'command' commands
+        ;;
+    (option-or-argument)
+        local -a args
+        args=(${(f)"$(phpenv completions ${line[1]})"})
+        _describe -t args 'arg' args
+        ;;
+esac
+
+return

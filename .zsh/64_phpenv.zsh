@@ -2,7 +2,8 @@ export PHPENV_ROOT="$HOME/.phpenv"
 export PATH="$PHPENV_ROOT/bin:$PATH"
 
 if type phpenv &>/dev/null; then
-    _evalcache phpenv init -
+    _evalcache phpenv init - nocompletions
+	export PHPENV_SHELL=zsh
 
     if [ ! -d "$HOME/.phpenv" ]; then
         ln -sFi "$PHPENV_ROOT" "$HOME/.phpenv"
