@@ -26,23 +26,27 @@ alias t='tail -f'
 alias p='ps -f'
 alias mmv='noglob zmv -W'
 
-alias dco=docker-compose
-alias dcb='docker-compose build'
-alias dcdn='docker-compose down'
-alias dce='docker-compose exec'
-alias dck='docker-compose kill'
-alias dcl='docker-compose logs'
-alias dclf='docker-compose logs -f'
-alias dcps='docker-compose ps'
-alias dcpull='docker-compose pull'
-alias dcr='docker-compose run'
-alias dcrestart='docker-compose restart'
-alias dcrm='docker-compose rm'
-alias dcstart='docker-compose start'
-alias dcstop='docker-compose stop'
-alias dcup='docker-compose up'
-alias dcupb='docker-compose up --build'
-alias dcupd='docker-compose up -d'
+if type docker-compose &> /dev/null; then
+    alias dco=docker-compose
+else
+    alias dco='docker compose'
+fi
+alias dcb='dco build'
+alias dcdn='dco down'
+alias dce='dco exec'
+alias dck='dco kill'
+alias dcl='dco logs'
+alias dclf='dco logs -f'
+alias dcps='dco ps'
+alias dcpull='dco pull'
+alias dcr='dco run'
+alias dcrestart='dco restart'
+alias dcrm='dco rm'
+alias dcstart='dco start'
+alias dcstop='dco stop'
+alias dcup='dco up'
+alias dcupb='dco up --build'
+alias dcupd='dco up -d'
 
 alias f=fuck
 
