@@ -30,6 +30,7 @@ if type docker-compose &> /dev/null; then
     alias dco=docker-compose
 else
     alias dco='docker compose'
+    alias docker-compose='docker compose'
 fi
 alias dcb='dco build'
 alias dcdn='dco down'
