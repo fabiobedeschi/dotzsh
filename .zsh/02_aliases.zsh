@@ -1,3 +1,5 @@
+alias sudo='sudo '  # Allow sudo aliases expansion
+
 alias 0='cd ~'
 alias 1='cd -'
 alias 2='cd +2'
