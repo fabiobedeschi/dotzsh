@@ -1,5 +1,5 @@
 if type exa &> /dev/null; then
-    alias ls='exa'
+    alias ls='exa --group-directories-first'
     unalias lS
     unalias lart
     unalias lrt
