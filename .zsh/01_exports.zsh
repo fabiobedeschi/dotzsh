@@ -10,11 +10,13 @@ if type bat &>/dev/null; then
 	export CAT='bat -p'
 	export FZF_CAT='bat --color=always --style=numbers --line-range=:500 {}'
 	export PAGER=$CAT
+	export BAT_PAGER='less'
 elif type batcat &>/dev/null; then
 	alias bat=batcat
 	export CAT='bat -p'
 	export FZF_CAT='bat --color=always --style=numbers --line-range=:500 {}'
 	export PAGER=$CAT
+	export BAT_PAGER='less'
 else
 	export CAT='cat'
 	export FZF_CAT='cat {}'
