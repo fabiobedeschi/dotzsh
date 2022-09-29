@@ -51,6 +51,8 @@ alias dcup='dco up'
 alias dcupb='dco up --build'
 alias dcupd='dco up -d'
 
+alias ed="${EDITOR:-nano}"
+
 alias f=fuck
 
 alias fzfp='fzf --preview "${FZF_CAT}"'
@@ -82,7 +84,7 @@ alias l=ll
 alias lzd=lazydocker
 alias lzg=lazygit
 
-alias mount-efi=/Users/fabio/Development/MountEFI/MountEFI.command
+alias mi=micro
 
 alias nmap_check_for_firewall='sudo nmap -sA -p1-65535 -v -T4'
 alias nmap_check_for_vulns='nmap --script=vuln'
