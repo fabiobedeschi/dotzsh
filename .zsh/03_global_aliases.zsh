@@ -1,5 +1,7 @@
 alias -g B='| bat'
 alias -g BP='| bat -p'
+alias -g B64='| base64'
+alias -g B64D='| base64 -d'
 alias -g C='| cat'
 alias -g CA='2>&1 | cat -A'
 alias -g CP='| tee >(perl -pe "chomp if eof" | clipcopy)'
