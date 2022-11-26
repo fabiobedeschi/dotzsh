@@ -112,7 +112,10 @@ alias tf=terraform
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias sortnr='sort -n -r'
+
 alias unexport=unset
+
+alias untar='tar -xvzf'
 
 alias utcnow='date -u && date -u +%s'
 
