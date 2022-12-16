@@ -5,6 +5,7 @@ if type brew &>/dev/null; then
 		$(brew --prefix bzip2)/bin
 		$(brew --prefix coreutils)/libexec/gnubin
 		$(brew --prefix grep)/libexec/gnubin
+		$(brew --prefix make)/libexec/gnubin
 		$(brew --prefix)/bin
 		$path
 	)
