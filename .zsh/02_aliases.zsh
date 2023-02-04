@@ -126,3 +126,7 @@ alias which-command=whence
 alias z='_z 2>&1'
 
 alias zshrc='${EDITOR:-vim} /Users/fabio/.zshrc'
+
+if type xdg-open &> /dev/null; then
+	alias open='xdg-open'
+fi
