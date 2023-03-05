@@ -11,10 +11,10 @@ zstyle ':z4h:' auto-update      'yes'
 zstyle ':z4h:' auto-update-days '7'
 
 # Keyboard type: 'mac' or 'pc'.
-zstyle ':z4h:bindkey' keyboard  'mac'
+zstyle ':z4h:bindkey' keyboard  'pc'
 
 # Mark up shell's output with semantic information.
-zstyle ':z4h:' term-shell-integration 'yes'
+zstyle ':z4h:' term-shell-integration 'no'
 
 # Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
 # full-fledged tmux ('system'), or disable features that require tmux ('no').
@@ -81,7 +81,6 @@ z4h init || return
 path=(
     ~/opt
     ~/bin
-    # /usr/local/opt/*/bin
     /usr/local/bin
     /usr/local/sbin
     $path
