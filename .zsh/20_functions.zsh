@@ -197,3 +197,57 @@ function mobymac {
 		    ;;
 	esac
 }
+
+# general update function
+function upd {
+	if type apt &> /dev/null; then
+		if type nala &> /dev/null; then
+			echo "[upd] Updating apt (using nala)..."
+			sudo nala upgrade -y
+		else
+			echo "[upd] Updating apt..."
+			sudo apt update && sudo apt upgrade -y
+		fi
+		echo
+	fi
+
+	if type pacman &> /dev/null; then
+		if type paru &> /dev/null; then
+			echo "[upd] Updating pacman (using paru)..."
+			paru -Syu
+		elif type yay &> /dev/null; then
+			echo "[upd] Updating pacman (using yay)..."
+			yay -Syu
+		else
+			echo "[upd] Updating pacman..."
+			sudo pacman -Syu
+		fi
+		echo
+	fi
+
+	if type yum &> /dev/null; then
+		echo "[upd] Updating yum..."
+		sudo yum update
+		echo ""
+	fi
+
+	if type brew &> /dev/null; then
+		echo "[upd] Updating brew..."
+		brew update && brew upgrade && brew cleanup
+		echo
+	fi
+
+	if type flatpak &> /dev/null; then
+		echo "[upd] Updating flatpak..."
+		flatpak update
+		echo
+	fi
+
+	if type snap &> /dev/null; then
+		echo "[upd] Updating snap..."
+		sudo snap refresh
+		echo
+	fi
+
+	echo "[upd] Done!"
+}
