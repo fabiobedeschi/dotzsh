@@ -130,3 +130,6 @@ alias zshrc='${EDITOR:-vim} /Users/fabio/.zshrc'
 if type xdg-open &> /dev/null; then
 	alias open='xdg-open'
 fi
+
+# Reset the PATH to the default
+alias rpath='PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"'
