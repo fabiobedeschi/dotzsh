@@ -18,7 +18,8 @@ zstyle ':z4h:' term-shell-integration 'no'
 
 # Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
 # full-fledged tmux ('system'), or disable features that require tmux ('no').
-zstyle ':z4h:' start-tmux       'no'
+# zstyle ':z4h:' start-tmux       'no'
+zstyle ':z4h:' start-tmux       'integrated'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
 zstyle ':z4h:' prompt-at-bottom 'yes'

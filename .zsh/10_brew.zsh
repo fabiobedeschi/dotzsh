@@ -11,7 +11,7 @@ if type brew &>/dev/null; then
 	)
 
 	fpath=(
-		/usr/local/share/zsh/site-functions
+		$HOMEBREW_PREFIX/share/zsh/site-functions
 		$fpath
 	)
 fi
