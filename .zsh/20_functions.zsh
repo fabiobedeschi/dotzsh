@@ -203,10 +203,10 @@ function upd {
 	if type apt &> /dev/null; then
 		if type nala &> /dev/null; then
 			echo "[upd] Updating apt (using nala)..."
-			sudo nala upgrade -y
+			sudo nala upgrade
 		else
 			echo "[upd] Updating apt..."
-			sudo apt update && sudo apt upgrade -y
+			sudo apt update && sudo apt upgrade
 		fi
 		echo
 	fi
@@ -225,10 +225,14 @@ function upd {
 		echo
 	fi
 
-	if type yum &> /dev/null; then
+	if type dnf &> /dev/null; then
+		echo "[upd] Updating dnf..."
+		sudo dnf update
+		echo
+	elif type yum &> /dev/null; then
 		echo "[upd] Updating yum..."
 		sudo yum update
-		echo ""
+		echo
 	fi
 
 	if type brew &> /dev/null; then
