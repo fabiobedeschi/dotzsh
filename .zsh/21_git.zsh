@@ -336,3 +336,20 @@ function grename() {
 }
 
 unset git_version
+
+function gdh() {
+  # git diff HEAD depending in arguments
+  # if more than 1 argument, use git diff HEAD~$1 -- $@
+  # if 1 argument, use git diff HEAD~$1
+  # if no arguments, use git diff HEAD
+
+  if [[ $# -gt 1 ]]; then
+    local _num=$1
+    shift
+    git diff HEAD~$_num -- $@
+  elif [[ $# -eq 1 ]]; then
+    git diff HEAD~$1
+  else
+    git diff HEAD
+  fi
+}
