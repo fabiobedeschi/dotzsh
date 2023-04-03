@@ -54,18 +54,16 @@ alias dcupd='dco up -d'
 alias ed="${EDITOR:-nano}"
 
 alias f=fuck
-
 alias fzfp='fzf --preview "${FZF_CAT}"'
+
 alias gemsets='rbenv gemset list'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
-
 alias gtr='git log --oneline --decorate --graph --all'
 alias gtrl='git log --graph --pretty='\''%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(bold magenta)(%ar) %C(bold blue)<%an>%Creset'\'' --all'
 
 alias h=history
 alias hgrep='fc -El 0 | grep'
 alias hs='history | grep -i'
-
 alias https='http --default-scheme=https'
 
 alias ls='ls -FhG --color=always --group-directories-first'
@@ -80,7 +78,6 @@ alias lsn='ls -1'
 alias lsr='ls -laRFh'
 alias lt='ls -ltFh'
 alias l=ll
-
 alias lzd=lazydocker
 alias lzg=lazygit
 
@@ -101,35 +98,32 @@ alias nmap_ping_through_firewall='nmap -PS -PA'
 alias nmap_slow='sudo nmap -sS -v -T1'
 alias nmap_traceroute='sudo nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute '
 alias nmap_web_safe_osscan='sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy '
-alias pandoc='pandoc --defaults=/Users/fabio/.local/share/pandoc/defaults.rb'
 
+alias pandoc='pandoc --defaults=/Users/fabio/.local/share/pandoc/defaults.rb'
 alias pip=pip3
 alias pipir='pip install -r requirements.txt'
 alias pipreq='pip freeze > requirements.txt'
 alias python=python3
 
-alias tf=terraform
+alias rpath='PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"'
 
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias sortnr='sort -n -r'
 
+alias tf=terraform
+
 alias unexport=unset
-
 alias untar='tar -xvzf'
-
 alias utcnow='date -u && date -u +%s'
 
 alias wanip='dig @resolver4.opendns.com myip.opendns.com +short'
-
 alias which-command=whence
 
-alias z='_z 2>&1'
+alias y=yay
 
-alias zshrc='${EDITOR:-vim} /Users/fabio/.zshrc'
+alias z='_z 2>&1'
+alias zshrc='ed $HOME.zshrc'
 
 if type xdg-open &> /dev/null; then
 	alias open='xdg-open'
 fi
-
-# Reset the PATH to the default
-alias rpath='PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"'
