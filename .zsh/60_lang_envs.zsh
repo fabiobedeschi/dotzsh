@@ -1,6 +1,6 @@
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 if type pyenv &>/dev/null; then
-	export PYENV_ROOT="$HOME/.pyenv"
-	export PATH="$PYENV_ROOT/bin:$PATH"
 
     _evalcache pyenv init - no_completion
     export PYENV_SHELL=zsh
@@ -11,9 +11,9 @@ if type pyenv &>/dev/null; then
 fi
 
 
+export NODENV_ROOT="$HOME/.nodenv"
+export PATH="$NODENV_ROOT/bin:$PATH"
 if type nodenv &>/dev/null; then
-	export NODENV_ROOT="$HOME/.nodenv"
-	export PATH="$NODENV_ROOT/bin:$PATH"
 
     _evalcache nodenv init - nocompletions
     export NODENV_SHELL=zsh
@@ -24,9 +24,9 @@ if type nodenv &>/dev/null; then
 fi
 
 
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
 if type rbenv &>/dev/null; then
-    export RBENV_ROOT="$HOME/.rbenv"
-    export PATH="$RBENV_ROOT/bin:$PATH"
 
     _evalcache rbenv init - no_completion
     export RBENV_SHELL=zsh
@@ -37,9 +37,9 @@ if type rbenv &>/dev/null; then
 fi
 
 
+export PHPENV_ROOT="$HOME/.phpenv"
+export PATH="$PHPENV_ROOT/bin:$PATH"
 if type phpenv &>/dev/null; then
-    export PHPENV_ROOT="$HOME/.phpenv"
-    export PATH="$PHPENV_ROOT/bin:$PATH"
 
     _evalcache phpenv init - nocompletions
 	export PHPENV_SHELL=zsh
@@ -53,9 +53,9 @@ if type phpenv &>/dev/null; then
 fi
 
 
+export JENV_ROOT="$HOME/.jenv"
+export PATH="$JENV_ROOT/bin:$PATH"
 if type jenv &>/dev/null; then
-    export JENV_ROOT="$HOME/.jenv"
-    export PATH="$JENV_ROOT/bin:$PATH"
 
     _evalcache jenv init -
 
