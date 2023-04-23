@@ -253,5 +253,11 @@ function upd {
 		echo
 	fi
 
+	if type update_zsh &> /dev/null; then
+		echo "[upd] Updating zsh..."
+		update_zsh
+		echo
+	fi
+
 	echo "[upd] Done!"
 }
