@@ -35,14 +35,7 @@ bindkey -M isearch . self-insert 2>/dev/null
 
 # Get current lan ip address
 function lanip () {
-	for interface in $(ipconfig getiflist)
-	do
-		local ifaddr=$(ipconfig getifaddr ${interface})
-		if [[ -n $ifaddr ]]
-		then
-			echo "${interface}:\t${ifaddr}"
-		fi
-	done
+	ip -j addr show | jq -r '.[] | select(.operstate == "UP") | [.ifname, (.addr_info[] | select(.family == "inet") | .local)] | @tsv'
 }
 
 # Random password generation function
