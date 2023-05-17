@@ -13,7 +13,9 @@ chmod +x install update
 ./install
 ```
 
-### Automatic install (not tested)
+### Automatic install
+
+Copy and paste the following command in your terminal, it will automatically clone the repository to `$HOME/dotzsh` and run the install script (requires `curl` or `wget` installed):
 
 ```sh
 if command -v curl >/dev/null 2>&1; then
@@ -33,4 +35,4 @@ update_zsh
 
 ## Notes
 
-- `z4h` keeps his update mechanism separated, use `z4h update` for that.
+- `z4h` keeps its update mechanism separated, use `z4h update` for updating it
