@@ -82,6 +82,7 @@ alias lzd=lazydocker
 alias lzg=lazygit
 
 alias mi=micro
+alias mkdir='mkdir -p'
 
 alias nmap_check_for_firewall='sudo nmap -sA -p1-65535 -v -T4'
 alias nmap_check_for_vulns='nmap --script=vuln'
