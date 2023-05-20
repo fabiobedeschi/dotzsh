@@ -100,7 +100,6 @@ alias nmap_slow='sudo nmap -sS -v -T1'
 alias nmap_traceroute='sudo nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute '
 alias nmap_web_safe_osscan='sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy '
 
-alias pandoc='pandoc --defaults=/Users/fabio/.local/share/pandoc/defaults.rb'
 alias pip=pip3
 alias pipir='pip install -r requirements.txt'
 alias pipreq='pip freeze > requirements.txt'
