@@ -1,7 +1,11 @@
 #! /usr/bin/env sh
 
 cd "$HOME/dotzsh"
-git fetch --all --prune && git pull --rebase
+git fetch --all --prune
+if [[ "$(git rev-parse HEAD)" == "$(git rev-parse @{u})" ]]; then
+    echo "Already up to date."
+else
+    git pull --rebase
+    echo "Start a new terminal session and profit!"
+fi
 cd "$OLDPWD"
-
-echo "Start a new terminal session and profit!"
