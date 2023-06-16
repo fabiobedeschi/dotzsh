@@ -2,7 +2,7 @@
 
 cd "$HOME/dotzsh"
 git fetch --all --prune
-if [[ "$(git rev-parse HEAD)" == "$(git rev-parse @{u})" ]]; then
+if [ "$(git rev-parse HEAD)" = "$(git rev-parse @{u})" ]; then
     echo "Already up to date."
 else
     git pull --rebase
