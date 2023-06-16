@@ -81,6 +81,8 @@ alias l=ll
 alias lzd=lazydocker
 alias lzg=lazygit
 
+alias woman=eg
+
 alias mi=micro
 alias mkdir='mkdir -p'
 
