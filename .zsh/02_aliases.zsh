@@ -66,6 +66,8 @@ alias hgrep='fc -El 0 | grep'
 alias hs='history | grep -i'
 alias https='http --default-scheme=https'
 
+alias hx=helix
+
 alias ls='ls -FhG --color=always --group-directories-first'
 alias ll='ls -lFh'
 alias lS='ls -1FSsh'
