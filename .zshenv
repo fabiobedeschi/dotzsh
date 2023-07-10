@@ -22,6 +22,7 @@ if [ -n "${ZSH_VERSION-}" ]; then
 fi
 
 Z4H_URL="https://raw.githubusercontent.com/romkatv/zsh4humans/v5"
+# Z4H_URL="https://raw.githubusercontent.com/fabiobedeschi/zsh4humans/v5"
 : "${Z4H:=${XDG_CACHE_HOME:-$HOME/.cache}/zsh4humans/v5}"
 
 umask o-w
