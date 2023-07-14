@@ -355,3 +355,15 @@ function gdh() {
     git diff HEAD
   fi
 }
+
+alias gtr='git log --oneline --decorate --graph --all'
+alias gtrl='git log --graph --pretty='\''%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(bold magenta)(%ai) %C(bold blue)<%an>%Creset'\'' --all'
+
+# function gtre {
+	# local _excluded=''
+	# for branch in $@; do
+		# _excluded="--exclude=refs/heads/${branch} ${_excluded}"
+	# done
+	# echo "git log --oneline --decorate --graph ${_excluded} --all"
+	# git log --oneline --decorate --graph ${_excluded} --all
+# }

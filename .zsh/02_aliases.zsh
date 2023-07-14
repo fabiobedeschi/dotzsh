@@ -58,8 +58,6 @@ alias fzfp='fzf --preview "${FZF_CAT}"'
 
 alias gemsets='rbenv gemset list'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
-alias gtr='git log --oneline --decorate --graph --all'
-alias gtrl='git log --graph --pretty='\''%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(bold magenta)(%ai) %C(bold blue)<%an>%Creset'\'' --all'
 
 alias h=history
 alias hgrep='fc -El 0 | grep'
