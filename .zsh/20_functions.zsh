@@ -129,6 +129,32 @@ function bak {
 	fi
 }
 
+
+# Rename file to <basename>.i
+function ign {
+	function _add_ext {
+		if [[ "$(basename $1)" != *.i ]]; then
+			new_name="$(dirname $1)/$(basename $1).i"
+			mv "$1" "$new_name" && echo "$1\t-->\t$new_name"
+		fi
+	}
+
+	function _rm_ext {
+		if [[ "$(basename $1)" == *.i ]]; then
+			new_name="$(dirname $1)/$(basename $1 .i)"
+			mv "$1" "$new_name" && echo "$1\t-->\t$new_name"
+		fi
+	}
+	local _rm_flags=(-r --rm --remove -R)
+
+	if (( ${_rm_flags[(I)$1]} )); then
+		shift
+		map _rm_ext $@
+	else
+		map _add_ext $@
+	fi
+}
+
 # Hide file prepending a dot
 function dotf {
 	function _hide {
