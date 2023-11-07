@@ -95,7 +95,7 @@ fpath=(~/.zsh/completions $fpath)
 export GPG_TTY=$TTY
 
 # Source additional local files if they exist.
-z4h source $HOME/.zsh/??_*.zsh
+z4h source $HOME/.zsh/*_*.zsh
 # z4h source --compile $HOME/.zsh/??_*.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
