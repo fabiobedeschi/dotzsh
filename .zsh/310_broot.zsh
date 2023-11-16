@@ -13,4 +13,6 @@ if type broot &> /dev/null; then
 			return "$code"
 		fi
 	}
+
+	alias br='br -h'
 fi
