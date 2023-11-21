@@ -121,6 +121,7 @@ alias utcnow='date -u && date -u +%s'
 alias wanip='dig @resolver4.opendns.com myip.opendns.com +short'
 alias which-command=whence
 
+alias yeah='yay -S'
 alias yeet='yay -Rs'
 
 alias z='_z 2>&1'
