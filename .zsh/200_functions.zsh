@@ -15,7 +15,8 @@ function ppath() {
 }
 
 # Define functions and completions.
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" }
+function mdcd() { md $@ && cd -- "$1" }
 compdef _directories md
 
 # '...' => '../..' and so on...
