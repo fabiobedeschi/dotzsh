@@ -118,6 +118,9 @@ alias unexport=unset
 alias untar='tar -xvzf'
 alias utcnow='date -u && date -u +%s'
 
+alias vi=vim
+alias vim=nvim
+
 alias wanip='dig @resolver4.opendns.com myip.opendns.com +short'
 alias which-command=whence
 

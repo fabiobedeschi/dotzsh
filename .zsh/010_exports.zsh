@@ -2,7 +2,7 @@
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='micro'
+  export EDITOR='nvim'
 fi
 
 # Paginator
