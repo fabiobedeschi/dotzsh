@@ -63,3 +63,6 @@ if type jenv &>/dev/null; then
         ln -sFi "$JENV_ROOT" "$HOME/.jenv"
     fi
 fi
+
+
+[[ -f /opt/asdf-vm/asdf.sh ]] && . /opt/asdf-vm/asdf.sh
