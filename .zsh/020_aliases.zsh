@@ -1,4 +1,5 @@
 alias sudo='sudo '  # Allow sudo aliases expansion
+alias rzsh='sudo -Es' # Spawn a new fully configured shell as root
 
 alias 0='cd ~'
 alias 1='cd -'
