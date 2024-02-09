@@ -15,9 +15,10 @@ function ppath() {
 }
 
 # Define functions and completions.
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" }
-function mdcd() { md $@ && cd -- "$1" }
-compdef _directories md
+function mkd() { [[ $# == 1 ]] && mkdir -p -- "$1" }
+function mkdcd() { mkd $@ && cd -- "$1" }
+compdef _directories mkd
+compdef _directories mkdcd
 
 function md5() { printf '%s' "$*" | md5sum | cut -d' ' -f1 }
 
