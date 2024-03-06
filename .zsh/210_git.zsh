@@ -130,6 +130,8 @@ alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdup='git diff @{upstream}'
 alias gdw='git diff --word-diff'
 
+alias gsfd='git config --global --add safe.directory $(pwd)'
+
 function gdnolock() {
   git diff "$@" ":(exclude)package-lock.json" ":(exclude)*.lock"
 }
