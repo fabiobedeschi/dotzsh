@@ -284,3 +284,42 @@ function upd {
 
 	echo "[upd] Done!"
 }
+
+function dozzle {
+	local _port=8888
+	if [ ! -z "$1" ]; then
+		if [[ "$1" =~ ^[0-9]+$ ]]; then
+			_port=$1
+		elif [[ "$1" == "stop" ]]; then
+			docker stop dozzle
+			return
+		elif [[ "$1" == "restart" ]]; then
+			docker restart dozzle
+			return
+		elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
+			echo "Dozzle is a log viewer for Docker."
+			echo ""
+			echo "Usage:"
+			echo "\tdozzle [port]"
+			echo "\tdozzle stop"
+			echo "\tdozzle restart"
+			echo ""
+			echo "Options:"
+			echo "\t-h, --help\tShow this help message."
+			echo ""
+			return
+		else
+			echo "Invalid argument: $1"
+			return
+		fi
+	fi
+
+	if [ ! -z "$(docker ps -q -f name=dozzle -f status=running)" ]; then
+		echo "Dozzle is already running."
+		return
+	fi
+
+	docker run --rm --name dozzle -d --volume=/var/run/docker.sock:/var/run/docker.sock:ro -p "$_port":8080 amir20/dozzle
+	echo "http://localhost:${_port}"
+	
+}
