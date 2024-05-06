@@ -1,1 +1,6 @@
-[[ -r "$Z4H/agkozak/zsh-z/zsh-z.plugin.zsh" ]] && source "$Z4H/agkozak/zsh-z/zsh-z.plugin.zsh"
+if ! type zoxide &> /dev/null; then
+	# Download and install zoxide
+	curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh > /dev/null
+fi
+
+_evalcache zoxide init zsh

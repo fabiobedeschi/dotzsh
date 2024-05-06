@@ -65,7 +65,6 @@ zstyle ':z4h:term-title:local' precmd  '%~'
 # z4h install ohmyzsh/ohmyzsh || return
 _gh_repos=(
 	# owner/repo_name
-    agkozak/zsh-z
     mroth/evalcache
 )
 for r in $_gh_repos; do
@@ -83,6 +82,7 @@ z4h init || return
 path=(
     ~/opt
     ~/bin
+    ~/.local/bin
     /usr/local/bin
     /usr/local/sbin
     $path
