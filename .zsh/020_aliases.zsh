@@ -114,6 +114,7 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias sortnr='sort -n -r'
 
 alias tf=terraform
+alias trunc="echo -n >"
 
 alias unexport=unset
 alias untar='tar -xvzf'
