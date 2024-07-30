@@ -323,3 +323,8 @@ function dozzle {
 	echo "http://localhost:${_port}"
 	
 }
+
+function bcrypt {
+	local _cost="${2:-13}"
+	htpasswd -bnBC $_cost "" $1 | sed -E '/^:/s/:(.*)$/\1/p;d'
+}
