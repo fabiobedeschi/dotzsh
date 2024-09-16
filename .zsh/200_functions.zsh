@@ -20,7 +20,7 @@ function mkdcd() { mkd $@ && cd -- "$1" }
 compdef _directories mkd
 compdef _directories mkdcd
 
-function md5() { printf '%s' "$*" | md5sum | cut -d' ' -f1 }
+function md5() { cat $1 | md5sum | cut -d' ' -f1 }
 
 # '...' => '../..' and so on...
 function rationalise-dot() {
