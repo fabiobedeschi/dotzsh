@@ -321,10 +321,31 @@ function dozzle {
 
 	docker run --rm --name dozzle -d --volume=/var/run/docker.sock:/var/run/docker.sock:ro -p "$_port":8080 amir20/dozzle
 	echo "http://localhost:${_port}"
-	
+
 }
 
 function bcrypt {
-	local _cost="${2:-13}"
-	htpasswd -bnBC $_cost "" $1 | sed -E '/^:/s/:(.*)$/\1/p;d'
+	# usage bcrypt [password] -c [cost]
+    # read password from stdin if not given as argument
+	local password
+	local cost=12
+
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			-c|--cost)
+				cost=$2
+				shift 2
+				;;
+			*)
+				password=$1
+				shift
+				;;
+		esac
+	done
+
+	if [ -z "$password" ]; then
+		read -s password
+	fi
+
+	htpasswd -bnBC $cost "" "$password" | sed -E '/^:/s/:(.*)$/\1/p;d'
 }
