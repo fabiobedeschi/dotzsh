@@ -97,6 +97,7 @@ alias gcsm='git commit -s -m'
 alias gcas='git commit -a -s'
 alias gcasm='git commit -a -s -m'
 alias gcb='git checkout -b'
+alias gcbkp='gcb $(current_branch)-bkp'
 alias gcf='git config --list'
 
 function gccd() {
