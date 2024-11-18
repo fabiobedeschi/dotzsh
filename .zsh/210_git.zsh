@@ -132,6 +132,16 @@ alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gdup='git diff @{upstream}'
 alias gdw='git diff --word-diff'
 
+function gdo() {
+	git diff "origin/$1"
+}
+_gdo_autocomplete() {
+  local branches
+  branches=("${(@f)$(git branch -r | sed 's|\s*origin/||' | grep -v '\->')}")
+  _describe 'branches' branches
+}
+compdef _gdo_autocomplete gdo
+
 alias gsfd='git config --global --add safe.directory $(pwd)'
 
 function gdnolock() {
