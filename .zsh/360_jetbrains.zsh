@@ -98,3 +98,7 @@ if [[ $_uname == "Linux" ]]; then
         }
     fi
 fi
+
+if type idea &>/dev/null; then
+	alias jed='idea -e'
+fi
