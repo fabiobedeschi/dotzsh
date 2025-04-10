@@ -68,16 +68,16 @@ alias https='http --default-scheme=https'
 alias hx=helix
 
 alias ls='ls -hG -F --color=always --group-directories-first'
-alias ll='ls -lh -F'
-alias lS='ls -1Ssh -F'
-alias la='ls -lah -F'
-alias lart='ls -1cart -F'
+alias ll='ls -lh'
+alias lS='ls -1Ssh'
+alias la='ls -lah'
+alias lart='ls -1cart'
 alias l.='ls -ld .*'
-alias lr='ls -tRh -F'
-alias lrt='ls -1crt -F'
+alias lr='ls -tRh'
+alias lrt='ls -1crt'
 alias lsn='ls -1'
-alias lsr='ls -laRh -F'
-alias lt='ls -lth -F'
+alias lsr='ls -laRh'
+alias lt='ls -lth'
 alias l=ll
 alias lzd=lazydocker
 alias lzg=lazygit
