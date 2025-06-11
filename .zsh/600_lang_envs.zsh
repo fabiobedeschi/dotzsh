@@ -64,5 +64,6 @@ if type jenv &>/dev/null; then
     fi
 fi
 
-
-[[ -f /opt/asdf-vm/asdf.sh ]] && . /opt/asdf-vm/asdf.sh
+if type asdf &>/dev/null; then
+	export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+fi
