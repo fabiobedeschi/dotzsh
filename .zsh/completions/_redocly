@@ -3,15 +3,15 @@
 #
 # yargs command completion script
 #
-# Installation: /usr/local/bin/redocly completion >> ~/.zshrc
-#    or /usr/local/bin/redocly completion >> ~/.zsh_profile on OSX.
+# Installation: redocly completion >> ~/.zshrc
+#    or redocly completion >> ~/.zsh_profile on OSX.
 #
 _redocly_yargs_completions()
 {
   local reply
   local si=$IFS
   IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /usr/local/bin/redocly --get-yargs-completions "${words[@]}"))
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" redocly --get-yargs-completions "${words[@]}"))
   IFS=$si
   _describe 'values' reply
 }
