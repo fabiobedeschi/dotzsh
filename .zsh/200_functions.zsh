@@ -1,3 +1,10 @@
+# Start a new shell as root user
+function asroot() {
+	echo 'Entering root mode...'
+	sudo -E $SHELL
+	echo 'Exited root mode.'
+}
+
 # Automatic ls after cd-ing into a directory
 function _cdls() {
 	emulate -L zsh
