@@ -267,7 +267,7 @@ function upd {
 
 	if type brew &> /dev/null; then
 		echo "[upd] Updating brew..."
-		brew update && brew upgrade && brew cleanup
+		brew update && brew upgrade -y --no-ask && brew cleanup
 		echo
 	fi
 
