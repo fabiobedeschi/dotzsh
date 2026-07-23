@@ -60,48 +60,52 @@ function genpasswd {
 }
 alias genpw=genpasswd
 
-# uuid v4 generation
 function uuid_usage {
-	echo "Print a random generated UUID v4."
+	echo "Print a random generated UUID v7 (default) or v4."
     echo ""
     echo "Usage:"
     echo "\tuuid [option]"
     echo "Options:"
 	echo "\t-h    --help     \tShow this help message."
+    echo "\t-4    --v4       \t$(uuid -4) (v4 instead of v7)"
     echo "\t-l    --lowercase\t$(uuid -l) (default)"
     echo "\t-u    --uppercase\t$(uuid -u)"
     echo "\t      --no-dashes\t$(uuid --no-dashes)"
     echo ""
 }
-function uuid {
-	local gen_uuid=${$(uuidgen):l}
-	while [ "$1" != "" ]; do
-	    PARAM=`echo $1 | awk -F= '{print $1}'`
-	    case $PARAM in
-	        -h | --help)
-	            uuid_usage
-	            local error='true'
-	            ;;
-	        -u | --uppercase)
-	            gen_uuid=${gen_uuid:u}
-	            ;;
-	        -l | --lowercase)
-				gen_uuid=${gen_uuid:l}
-	            ;;
-	        --no-dashes)
-				gen_uuid=$(echo $gen_uuid | tr -d '-')
-	            ;;
-	        *)
-	            echo "ERROR: unknown parameter \"$PARAM\""
-	            echo ""
-	            local error='true'
-	            uuid_usage
-	            ;;
-	    esac
-	    shift
-	done
+_uuid_v7() {
+	local ts_ms=$(( $(date +%s%N) / 1000000 ))
+	local ts_hex=$(printf '%012x' $ts_ms)
+	local rand=$(od -An -N10 -tx1 /dev/urandom | tr -d ' \n')
+	local rand_a=${rand:0:3}
+	local variant_val=$(( (16#${rand:3:1} & 3) | 8 ))
+	local variant_hex=$(printf '%x' $variant_val)
+	local rand_b1=${rand:4:3}
+	local rand_b2=${rand:7:12}
+	echo "${ts_hex:0:8}-${ts_hex:8:4}-7${rand_a}-${variant_hex}${rand_b1}-${rand_b2}"
+}
 
-	if [[ -z $error ]]; then
+uuid () {
+	local gen_uuid=${$(_uuid_v7):l}
+	while [ "$1" != "" ]
+	do
+		PARAM=`echo $1 | awk -F= '{print $1}'`
+		case $PARAM in
+			(-h | --help) uuid_usage
+				local error='true'  ;;
+			(-4 | --v4) gen_uuid=${$(uuidgen):l}  ;;
+			(-u | --uppercase) gen_uuid=${gen_uuid:u}  ;;
+			(-l | --lowercase) gen_uuid=${gen_uuid:l}  ;;
+			(--no-dashes) gen_uuid=$(echo $gen_uuid | tr -d '-')  ;;
+			(*) echo "ERROR: unknown parameter \"$PARAM\""
+				echo ""
+				local error='true'
+				uuid_usage ;;
+		esac
+		shift
+	done
+	if [[ -z $error ]]
+	then
 		echo $gen_uuid
 	fi
 }
