@@ -152,12 +152,12 @@ compdef _git gdnolock=git-diff
 function gdv() { git diff -w "$@" | view - }
 compdef _git gdv=git-diff
 
-alias gf='git fetch'
+alias gf='git fetch --tags'
 # --jobs=<n> was added in git 2.8
 is-at-least 2.8 "$git_version" \
-  && alias gfa='git fetch --all --prune --jobs=10' \
-  || alias gfa='git fetch --all --prune'
-alias gfo='git fetch origin'
+  && alias gfa='git fetch --all --tags --prune --prune-tags --jobs=10' \
+  || alias gfa='git fetch --all --tags --prune --prune-tags'
+alias gfo='git fetch origin --tags'
 
 alias gfg='git ls-files | grep'
 
