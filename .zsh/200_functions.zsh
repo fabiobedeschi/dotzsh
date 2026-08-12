@@ -335,6 +335,38 @@ function dozzle {
 
 }
 
+# Decode and pretty print a JWT, given as argument or read from stdin
+function jwt {
+	emulate -L zsh
+	local token=${1:-$(cat)}
+	token=${${token//[[:space:]]/}#Bearer}
+
+	local -a parts=(${(s:.:)token})
+	if (( ${#parts} < 2 )); then
+		print -u2 "jwt: not a JWT (expected at least 2 dot-separated segments)"
+		return 1
+	fi
+
+	local -a labels=(header payload)
+	local i b64 pad json
+	for i in 1 2; do
+		b64=${${parts[i]//-/+}//_//}
+		pad=$(( ${#b64} + (4 - ${#b64} % 4) % 4 ))
+		json=$(print -r -- ${(r:pad::=:)b64} | base64 -d 2>/dev/null)
+		if [[ -z $json ]]; then
+			print -u2 "jwt: cannot decode ${labels[i]}"
+			return 1
+		fi
+		print -P "%B%F{cyan}${labels[i]}%f%b"
+		print -r -- "$json" | jq . || print -r -- "$json"
+	done
+
+	if (( ${#parts} >= 3 )); then
+		print -P "%B%F{cyan}signature%f%b"
+		print -r -- "${parts[3]}"
+	fi
+}
+
 function bcrypt {
 	# usage bcrypt [password] -c [cost]
     # read password from stdin if not given as argument
