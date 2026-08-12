@@ -1,0 +1,670 @@
+#compdef evnx
+
+autoload -U is-at-least
+
+_evnx() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_evnx_commands" \
+"*::: :->evnx" \
+&& ret=0
+    case $state in
+    (evnx)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:evnx-command-$line[1]:"
+        case $line[1] in
+            (init)
+_arguments "${_arguments_options[@]}" : \
+'--path=[Output path for .env files]:PATH:_default' \
+'-y[Skip all prompts and use defaults]' \
+'--yes[Skip all prompts and use defaults]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" : \
+'-p+[Output path (default\: current directory)]:PATH:_default' \
+'--path=[Output path (default\: current directory)]:PATH:_default' \
+'-y[Skip confirmation prompts]' \
+'--yes[Skip confirmation prompts]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_evnx__add_commands" \
+"*::: :->add" \
+&& ret=0
+
+    case $state in
+    (add)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:evnx-add-command-$line[1]:"
+        case $line[1] in
+            (service)
+_arguments "${_arguments_options[@]}" : \
+'-p+[Output path (default\: current directory)]:PATH:_default' \
+'--path=[Output path (default\: current directory)]:PATH:_default' \
+'-y[Skip confirmation prompts]' \
+'--yes[Skip confirmation prompts]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':service -- Service ID (e.g., "postgresql", "redis", "stripe"):_default' \
+&& ret=0
+;;
+(framework)
+_arguments "${_arguments_options[@]}" : \
+'-l+[Language ID (e.g., "python", "javascript_typescript")]:LANGUAGE:_default' \
+'--language=[Language ID (e.g., "python", "javascript_typescript")]:LANGUAGE:_default' \
+'-p+[Output path (default\: current directory)]:PATH:_default' \
+'--path=[Output path (default\: current directory)]:PATH:_default' \
+'-y[Skip confirmation prompts]' \
+'--yes[Skip confirmation prompts]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':framework -- Framework ID (e.g., "django", "nextjs", "axum_actix"):_default' \
+&& ret=0
+;;
+(blueprint)
+_arguments "${_arguments_options[@]}" : \
+'-p+[Output path (default\: current directory)]:PATH:_default' \
+'--path=[Output path (default\: current directory)]:PATH:_default' \
+'-y[Skip confirmation prompts]' \
+'--yes[Skip confirmation prompts]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':blueprint -- Blueprint ID (e.g., "t3_modern", "rust_high_perf"):_default' \
+&& ret=0
+;;
+(custom)
+_arguments "${_arguments_options[@]}" : \
+'-p+[Output path (default\: current directory)]:PATH:_default' \
+'--path=[Output path (default\: current directory)]:PATH:_default' \
+'-y[Skip confirmation prompts]' \
+'--yes[Skip confirmation prompts]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_evnx__add__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:evnx-add-help-command-$line[1]:"
+        case $line[1] in
+            (service)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(framework)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(blueprint)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(custom)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(validate)
+_arguments "${_arguments_options[@]}" : \
+'--env=[]:ENV:_default' \
+'--example=[]:EXAMPLE:_default' \
+'--format=[]:FORMAT:_default' \
+'*--ignore=[Comma-separated list of issue types to ignore]:IGNORE:_default' \
+'-p+[Environment pattern (.env.production, .env.local, etc.)]:PATTERN:_default' \
+'--pattern=[Environment pattern (.env.production, .env.local, etc.)]:PATTERN:_default' \
+'--strict[]' \
+'--fix[]' \
+'--exit-zero[]' \
+'--validate-formats[Validate value formats\: url, port, email]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(scan)
+_arguments "${_arguments_options[@]}" : \
+'*--exclude=[]:EXCLUDE:_default' \
+'*--pattern=[]:PATTERN:_default' \
+'--format=[]:FORMAT:_default' \
+'--ignore-placeholders[]' \
+'--exit-zero[]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::path:_default' \
+&& ret=0
+;;
+(diff)
+_arguments "${_arguments_options[@]}" : \
+'--env=[]:ENV:_default' \
+'--example=[]:EXAMPLE:_default' \
+'--format=[]:FORMAT:_default' \
+'*--ignore-keys=[Ignore these keys (comma-separated) — useful for env-specific vars]:IGNORE_KEYS:_default' \
+'--show-values[]' \
+'--reverse[]' \
+'--with-stats[Include extended statistics in JSON output]' \
+'-i[Enable interactive merge mode (patch format only)]' \
+'--interactive[Enable interactive merge mode (patch format only)]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(convert)
+_arguments "${_arguments_options[@]}" : \
+'--env=[Path to input .env file]:PATH:_default' \
+'--to=[Target output format (omit for interactive selection)]:FORMAT:_default' \
+'-o+[Write output to file instead of stdout]:FILE:_default' \
+'--output=[Write output to file instead of stdout]:FILE:_default' \
+'--include=[Include only variables matching this glob pattern]:PATTERN:_default' \
+'--exclude=[Exclude variables matching this glob pattern]:PATTERN:_default' \
+'--prefix=[Prefix to prepend to all variable names]:PREFIX:_default' \
+'--transform=[Transform variable name casing]:MODE:_default' \
+'--base64[Base64-encode all values before output]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(sync)
+_arguments "${_arguments_options[@]}" : \
+'--direction=[Direction of sync operation]:DIRECTION:((forward\:"Sync .env → .env.example (add new vars to template)"
+reverse\:"Sync .env.example → .env (add missing vars to local env)"))' \
+'--template-config=[Path to custom placeholder template config (JSON)]:PATH:_files' \
+'--naming-policy=[Warn on non-standard env var naming (default\: warn)]:NAMING_POLICY:((warn\:"Warn but continue (default)"
+error\:"Treat non-standard names as errors"
+ignore\:"Ignore naming conventions entirely"))' \
+'--placeholder[Use placeholder values when adding new variables]' \
+'-n[Preview changes without writing to files]' \
+'--dry-run[Preview changes without writing to files]' \
+'-f[Skip interactive prompts (for CI/CD usage)]' \
+'--force[Skip interactive prompts (for CI/CD usage)]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(template)
+_arguments "${_arguments_options[@]}" : \
+'--input=[]:INPUT:_default' \
+'--output=[]:OUTPUT:_default' \
+'--env=[]:ENV:_default' \
+'(--no-gitignore)--gitignore[Automatically add the output file to .gitignore (no prompt). Useful in CI scripts. Mutually exclusive with --no-gitignore]' \
+'(--gitignore)--no-gitignore[Skip all .gitignore checks and warnings. Use when you manage .gitignore externally. Mutually exclusive with --gitignore]' \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(doctor)
+_arguments "${_arguments_options[@]}" : \
+'-v[Show detailed diagnostic output]' \
+'--verbose[Show detailed diagnostic output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'::path -- Project directory to analyze:_default' \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+'-v[Enable verbose output]' \
+'--verbose[Enable verbose output]' \
+'-q[Suppress non-essential output]' \
+'--quiet[Suppress non-essential output]' \
+'--no-color[Disable colored output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':shell:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_evnx__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:evnx-help-command-$line[1]:"
+        case $line[1] in
+            (init)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" : \
+":: :_evnx__help__add_commands" \
+"*::: :->add" \
+&& ret=0
+
+    case $state in
+    (add)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:evnx-help-add-command-$line[1]:"
+        case $line[1] in
+            (service)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(framework)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(blueprint)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(custom)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(validate)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(scan)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(diff)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(convert)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sync)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(template)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(doctor)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_evnx_commands] )) ||
+_evnx_commands() {
+    local commands; commands=(
+'init:Interactive project setup — generates .env.example' \
+'add:Add environment variables to existing .env files' \
+'validate:Check .env against .env.example, find issues' \
+'scan:Detect secrets that look real (AWS keys, tokens, etc.)' \
+'diff:Compare .env vs .env.example — show missing/extra vars' \
+'convert:Transform \`.env\` files into multiple output formats' \
+'sync:Keep .env and .env.example in sync' \
+'template:Generate config files from templates' \
+'doctor:Check .env files, Git config, project structure, and security' \
+'completions:Generate shell completions' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'evnx commands' commands "$@"
+}
+(( $+functions[_evnx__add_commands] )) ||
+_evnx__add_commands() {
+    local commands; commands=(
+'service:Add variables for a specific service' \
+'framework:Add variables for a framework' \
+'blueprint:Add variables from a stack blueprint (without overwriting existing)' \
+'custom:Add custom variables interactively' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'evnx add commands' commands "$@"
+}
+(( $+functions[_evnx__add__blueprint_commands] )) ||
+_evnx__add__blueprint_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add blueprint commands' commands "$@"
+}
+(( $+functions[_evnx__add__custom_commands] )) ||
+_evnx__add__custom_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add custom commands' commands "$@"
+}
+(( $+functions[_evnx__add__framework_commands] )) ||
+_evnx__add__framework_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add framework commands' commands "$@"
+}
+(( $+functions[_evnx__add__help_commands] )) ||
+_evnx__add__help_commands() {
+    local commands; commands=(
+'service:Add variables for a specific service' \
+'framework:Add variables for a framework' \
+'blueprint:Add variables from a stack blueprint (without overwriting existing)' \
+'custom:Add custom variables interactively' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'evnx add help commands' commands "$@"
+}
+(( $+functions[_evnx__add__help__blueprint_commands] )) ||
+_evnx__add__help__blueprint_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add help blueprint commands' commands "$@"
+}
+(( $+functions[_evnx__add__help__custom_commands] )) ||
+_evnx__add__help__custom_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add help custom commands' commands "$@"
+}
+(( $+functions[_evnx__add__help__framework_commands] )) ||
+_evnx__add__help__framework_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add help framework commands' commands "$@"
+}
+(( $+functions[_evnx__add__help__help_commands] )) ||
+_evnx__add__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add help help commands' commands "$@"
+}
+(( $+functions[_evnx__add__help__service_commands] )) ||
+_evnx__add__help__service_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add help service commands' commands "$@"
+}
+(( $+functions[_evnx__add__service_commands] )) ||
+_evnx__add__service_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx add service commands' commands "$@"
+}
+(( $+functions[_evnx__completions_commands] )) ||
+_evnx__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx completions commands' commands "$@"
+}
+(( $+functions[_evnx__convert_commands] )) ||
+_evnx__convert_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx convert commands' commands "$@"
+}
+(( $+functions[_evnx__diff_commands] )) ||
+_evnx__diff_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx diff commands' commands "$@"
+}
+(( $+functions[_evnx__doctor_commands] )) ||
+_evnx__doctor_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx doctor commands' commands "$@"
+}
+(( $+functions[_evnx__help_commands] )) ||
+_evnx__help_commands() {
+    local commands; commands=(
+'init:Interactive project setup — generates .env.example' \
+'add:Add environment variables to existing .env files' \
+'validate:Check .env against .env.example, find issues' \
+'scan:Detect secrets that look real (AWS keys, tokens, etc.)' \
+'diff:Compare .env vs .env.example — show missing/extra vars' \
+'convert:Transform \`.env\` files into multiple output formats' \
+'sync:Keep .env and .env.example in sync' \
+'template:Generate config files from templates' \
+'doctor:Check .env files, Git config, project structure, and security' \
+'completions:Generate shell completions' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'evnx help commands' commands "$@"
+}
+(( $+functions[_evnx__help__add_commands] )) ||
+_evnx__help__add_commands() {
+    local commands; commands=(
+'service:Add variables for a specific service' \
+'framework:Add variables for a framework' \
+'blueprint:Add variables from a stack blueprint (without overwriting existing)' \
+'custom:Add custom variables interactively' \
+    )
+    _describe -t commands 'evnx help add commands' commands "$@"
+}
+(( $+functions[_evnx__help__add__blueprint_commands] )) ||
+_evnx__help__add__blueprint_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help add blueprint commands' commands "$@"
+}
+(( $+functions[_evnx__help__add__custom_commands] )) ||
+_evnx__help__add__custom_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help add custom commands' commands "$@"
+}
+(( $+functions[_evnx__help__add__framework_commands] )) ||
+_evnx__help__add__framework_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help add framework commands' commands "$@"
+}
+(( $+functions[_evnx__help__add__service_commands] )) ||
+_evnx__help__add__service_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help add service commands' commands "$@"
+}
+(( $+functions[_evnx__help__completions_commands] )) ||
+_evnx__help__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help completions commands' commands "$@"
+}
+(( $+functions[_evnx__help__convert_commands] )) ||
+_evnx__help__convert_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help convert commands' commands "$@"
+}
+(( $+functions[_evnx__help__diff_commands] )) ||
+_evnx__help__diff_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help diff commands' commands "$@"
+}
+(( $+functions[_evnx__help__doctor_commands] )) ||
+_evnx__help__doctor_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help doctor commands' commands "$@"
+}
+(( $+functions[_evnx__help__help_commands] )) ||
+_evnx__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help help commands' commands "$@"
+}
+(( $+functions[_evnx__help__init_commands] )) ||
+_evnx__help__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help init commands' commands "$@"
+}
+(( $+functions[_evnx__help__scan_commands] )) ||
+_evnx__help__scan_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help scan commands' commands "$@"
+}
+(( $+functions[_evnx__help__sync_commands] )) ||
+_evnx__help__sync_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help sync commands' commands "$@"
+}
+(( $+functions[_evnx__help__template_commands] )) ||
+_evnx__help__template_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help template commands' commands "$@"
+}
+(( $+functions[_evnx__help__validate_commands] )) ||
+_evnx__help__validate_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx help validate commands' commands "$@"
+}
+(( $+functions[_evnx__init_commands] )) ||
+_evnx__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx init commands' commands "$@"
+}
+(( $+functions[_evnx__scan_commands] )) ||
+_evnx__scan_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx scan commands' commands "$@"
+}
+(( $+functions[_evnx__sync_commands] )) ||
+_evnx__sync_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx sync commands' commands "$@"
+}
+(( $+functions[_evnx__template_commands] )) ||
+_evnx__template_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx template commands' commands "$@"
+}
+(( $+functions[_evnx__validate_commands] )) ||
+_evnx__validate_commands() {
+    local commands; commands=()
+    _describe -t commands 'evnx validate commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_evnx" ]; then
+    _evnx "$@"
+else
+    compdef _evnx evnx
+fi
