@@ -1,91 +1,61 @@
 # Personal Zsh configuration file. It is strongly recommended to keep all
 # shell customization and configuration (including exported environment
 # variables such as PATH) in this file or in files sourced from it.
-#
-# Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 
-# Periodic auto-update on Zsh startup: 'ask' or 'no'.
-# You can manually run `z4h update` to update everything.
-zstyle ':z4h:' auto-update      'yes'
-# Ask whether to auto-update this often; has no effect if auto-update is 'no'.
-zstyle ':z4h:' auto-update-days '7'
+# Powerlevel10k instant prompt. Must stay close to the top of ~/.zshrc.
+if [[ -r ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh ]]; then
+	source ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh
+fi
 
-# Keyboard type: 'mac' or 'pc'.
-zstyle ':z4h:bindkey' keyboard  'pc'
+# Shell options.
+setopt always_to_end auto_cd auto_param_slash auto_pushd c_bases extended_glob
+setopt interactive_comments multios no_auto_remove_slash no_beep no_bg_nice
+setopt no_flow_control no_list_types glob_dots no_auto_menu
 
-# Mark up shell's output with semantic information.
-zstyle ':z4h:' term-shell-integration 'no'
+# History.
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000000
+SAVEHIST=1000000000
+setopt extended_history hist_expire_dups_first hist_ignore_dups hist_save_no_dups
+setopt hist_find_no_dups hist_ignore_space hist_verify share_history hist_fcntl_lock
 
-# Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
-# full-fledged tmux ('system'), or disable features that require tmux ('no').
-zstyle ':z4h:' start-tmux       'no'
-# zstyle ':z4h:' start-tmux       'integrated'
+# Line editor.
+bindkey -e                     # emacs keymap; modules add their own bindings
+WORDCHARS=''                   # word == alphanumerics only
+KEYTIMEOUT=20                  # wait 200ms for the rest of a key sequence
+ZLE_REMOVE_SUFFIX_CHARS=''     # don't eat space when typing '|' after a completion
+zle_highlight=('paste:none')   # don't highlight pasted text
+POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-# Move prompt to the bottom when zsh starts up so that it's always in the
-# same position. Has no effect if start-tmux is 'no'.
-zstyle ':z4h:' prompt-at-bottom 'yes'
+typeset -gaU cdpath fpath path manpath
 
-# Keep the current working directory when using split pane or tab terminal app features
-zstyle ':z4h:' propagate-cwd yes
-
-# Right-arrow key accepts one character ('partial-accept') from
-# command autosuggestions or the whole thing ('accept')?
-zstyle ':z4h:autosuggestions' forward-char 'accept'
-
-# Recursively traverse directories when TAB-completing files.
-zstyle ':z4h:fzf-complete' recurse-dirs 'yes'
-
-# Enable direnv to automatically source .envrc files.
-zstyle ':z4h:direnv'         enable 'yes'
-# Show "loading" and "unloading" notifications from direnv.
-zstyle ':z4h:direnv:success' notify 'yes'
-
-# Enable ('yes') or disable ('no') automatic teleportation of z4h over
-# SSH when connecting to these hosts.
-# zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
-# zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
-# The default value if none of the overrides above match the hostname
-zstyle ':z4h:ssh:*'                   enable 'no'
-
-# Send these files over to the remote host when connecting over SSH to the
-# enabled hosts.
-zstyle ':z4h:ssh:*' send-extra-files '~/.zsh' '~/.p10k.zsh' '~/.p10k-8color.zsh'
-
-# Set session title
-zstyle ':z4h:term-title:ssh'   preexec '%n@%m: ${1//\%/%%}'
-zstyle ':z4h:term-title:ssh'   precmd  '%n@%m: %~'
-zstyle ':z4h:term-title:local' preexec '${1//\%/%%}'
-zstyle ':z4h:term-title:local' precmd  '%~'
-
-# Clone additional Git repositories from GitHub.
-#
-# This doesn't do anything apart from cloning the repository and keeping it
-# up-to-date. Cloned files can be used after `z4h init`. This is just an
-# example. If you don't plan to use Oh My Zsh, delete this line.
-# z4h install ohmyzsh/ohmyzsh || return
-_gh_repos=(
-	# owner/repo_name
-    mroth/evalcache
-)
-for r in $_gh_repos; do
-    z4h install $r || return
-done
-unset _gh_repos
-
-# Install or update core components (fzf, zsh-autosuggestions, etc.) and
-# initialize Zsh. After this point console I/O is unavailable until Zsh
-# is fully initialized. Everything that requires user interaction or can
-# perform network I/O must be done above. Everything else is best done below.
-z4h init || return
+# Homebrew environment, without paying for `brew shellenv`.
+() {
+	local brew
+	if [[ $OSTYPE == darwin* ]]; then
+		brew=({/opt/homebrew,/usr/local}/bin/brew(N))
+	else
+		brew=({/home/linuxbrew/.linuxbrew,~/.linuxbrew}/bin/brew(N))
+	fi
+	(( $#brew )) || return 0
+	export HOMEBREW_PREFIX=${brew[1]:h:h}
+	export HOMEBREW_CELLAR=$HOMEBREW_PREFIX/Cellar
+	if [[ -e $HOMEBREW_PREFIX/Homebrew/Library ]]; then
+		export HOMEBREW_REPOSITORY=$HOMEBREW_PREFIX/Homebrew
+	else
+		export HOMEBREW_REPOSITORY=$HOMEBREW_PREFIX
+	fi
+	path=($HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin $path)
+}
 
 # Extend PATH
 path=(
-    ~/opt
-    ~/bin
-    ~/.local/bin
-    /usr/local/bin
-    /usr/local/sbin
-    $path
+	~/opt
+	~/bin
+	~/.local/bin
+	/usr/local/bin
+	/usr/local/sbin
+	$path
 )
 
 # Extend FPATH
@@ -94,37 +64,50 @@ fpath=(~/.zsh/completions $fpath)
 # Export environment variables.
 export GPG_TTY=$TTY
 
-# Source additional local files if they exist.
-z4h source $HOME/.zsh/*_*.zsh
-# z4h source --compile $HOME/.zsh/??_*.zsh
+# Plugin loader: clone from GitHub on first use, then source the entrypoint.
+# Update everything with `update_zsh`.
+typeset -g ZSH_PLUGIN_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/plugins
+function plug() {
+	local repo=$1 dir=$ZSH_PLUGIN_DIR/${1:t} file
+	if [[ ! -d $dir ]]; then
+		(( $+commands[git] )) || { print -ru2 "plug: git is required to install $repo"; return 1 }
+		print -ru2 "plug: installing $repo"
+		command git clone -q --depth=1 https://github.com/$repo.git $dir || return
+	fi
+	for file in ${2:+$dir/$2} $dir/${repo:t}.plugin.zsh $dir/${repo:t}.zsh $dir/${repo:t}.zsh-theme; do
+		[[ -r $file ]] && { source $file; return }
+	done
+	print -ru2 "plug: no entrypoint found in $dir"
+	return 1
+}
 
-# Use additional Git repositories pulled in with `z4h install`.
-#
-# This is just an example that you should delete. It does nothing useful.
-# z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
-# z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
-
-# Define key bindings.
-# z4h bindkey undo Alt+Z          # undo the last command line change
-# z4h bindkey redo Alt+Y          # redo the last undone command line change
-z4h bindkey undo Ctrl+Z         # undo the last command line change
-z4h bindkey redo Ctrl+Alt+Z     # redo the last undone command line change
-
-z4h bindkey z4h-cd-back    Shift+Left   # cd into the previous directory
-z4h bindkey z4h-cd-forward Shift+Right  # cd into the next directory
-z4h bindkey z4h-cd-up      Shift+Up     # cd into the parent directory
-z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
+# `compdef` is only defined once compinit has run, which happens late (see
+# 900_completion.zsh) so that modules can still extend fpath. Queue the calls
+# made before that point; 900_completion.zsh replays them.
+typeset -ga _compdef_queue=()
+function compdef() { _compdef_queue+=("${(j: :)${(q)@}}") }
 
 # Autoload functions.
-autoload -Uz zmv
+autoload -Uz add-zsh-hook zmv
 autoload -Uz colors && colors
 
-# Define named directories: ~w <=> Windows home directory on WSL.
-[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
+# Source the configuration modules. Load order is the numeric filename prefix;
+# the glob requires an underscore in the name.
+for _rc in $HOME/.zsh/*_*.zsh(N); do
+	source $_rc
+done
+unset _rc
 
-# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
-setopt glob_dots     # no special treatment for file names with a leading dot
-setopt no_auto_menu  # require an extra TAB press to open the completion menu
+# Named directory: ~w <=> Windows home directory on WSL.
+[[ ! -d /mnt/c/Users/$USER ]] || hash -d w=/mnt/c/Users/$USER
 
 # Disable command not found
 [[ ! -v functions[command_not_found_handler] ]] || unfunction command_not_found_handler
+
+# Prompt. Type `p10k configure` or edit the config file to customize it.
+plug romkatv/powerlevel10k
+if (( ${terminfo[colors]:-0} >= 256 )); then
+	source ~/.p10k.zsh
+else
+	source ~/.p10k-8color.zsh
+fi

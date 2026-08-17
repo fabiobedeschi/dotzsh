@@ -54,7 +54,6 @@ alias dcupd='dco up -d'
 
 alias ed="${EDITOR:-nano}"
 
-alias f=fuck
 alias fzfp='fzf --preview "${FZF_CAT}"'
 
 alias gemsets='rbenv gemset list'
