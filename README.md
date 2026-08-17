@@ -1,6 +1,11 @@
 # zsh configuration
 
-My zsh configuration based on the awesome [zsh 4 humans](https://github.com/romkatv/zsh4humans)
+My zsh configuration: plain zsh, no framework, plus a few upstream plugins cloned on first run.
+
+- [powerlevel10k](https://github.com/romkatv/powerlevel10k) prompt
+- [fzf](https://github.com/junegunn/fzf) history search (`ctrl+r`), file picker (`ctrl+t`), directory picker (`alt+c`)
+- [fzf-tab](https://github.com/Aloxaf/fzf-tab) for fzf-driven tab completion
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search), [zsh-completions](https://github.com/zsh-users/zsh-completions)
 
 ## Install
 
@@ -33,6 +38,12 @@ After the installation simply run:
 update_zsh
 ```
 
+This also updates the plugins, which live in `${XDG_CACHE_HOME:-~/.cache}/zsh/plugins`.
+
 ## Notes
 
-- `z4h` keeps its update mechanism separated, use `z4h update` for updating it
+- Coming from the previous [zsh4humans](https://github.com/romkatv/zsh4humans) setup? Nothing is left behind in
+  `~/.zshenv`, so `rm -rf ~/.cache/zsh4humans` once the new shell works.
+- `p10k configure` regenerates `~/.p10k.zsh`. The `-8color` variant is used on terminals with fewer than 256 colors.
+- Keys: `shift+↑` cd up, `shift+←`/`shift+→` walk the directory stack, `shift+↓` or `alt+c` pick a subdirectory,
+  `↑`/`↓` search history by what is already typed, `ctrl+z` undo, `alt+m` accept the whole suggestion.

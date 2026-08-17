@@ -35,5 +35,11 @@ export AWS_PAGER=$PAGER
 # Color howdoi prompt
 export HOWDOI_COLORIZE=1
 
+# LS_COLORS is used by GNU ls and zsh completions, LSCOLORS by BSD ls.
+export LS_COLORS='fi=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:st=34:tw=04;34:'
+LS_COLORS+='pi=01;33:so=01;33:do=01;33:bd=01;33:cd=01;33:su=01;35:sg=01;35:ca=01;35:ex=01;32'
+export LSCOLORS='ExGxDxDxCxDxDxFxFxexEx'
+export TREE_COLORS=${LS_COLORS//04;}
+
 # Stop powerlevel10k wizard
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true

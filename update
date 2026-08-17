@@ -9,3 +9,14 @@ else
     echo "Start a new terminal session and profit!"
 fi
 cd "$OLDPWD"
+
+# Update the zsh plugins installed by `plug` and our own fzf copy, if any.
+for dir in "${XDG_CACHE_HOME:-$HOME/.cache}"/zsh/plugins/*/ "$HOME"/.fzf/; do
+    [ -d "$dir/.git" ] || continue
+    echo "Updating $(basename "$dir")..."
+    git -C "$dir" pull -q --ff-only || echo "  failed, skipped."
+done
+
+if [ -x "$HOME/.fzf/install" ]; then
+    "$HOME/.fzf/install" --bin --no-update-rc >/dev/null
+fi
