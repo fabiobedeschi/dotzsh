@@ -1,8 +1,8 @@
 # Give precedence to some brew keg-only packages
 if type brew &>/dev/null; then
 	path=(
-#		$HOMEBREW_PREFIX/opt/libpq/bin
-#		$HOMEBREW_PREFIX/opt/bzip2/bin
+		$HOMEBREW_PREFIX/opt/libpq/bin
+		$HOMEBREW_PREFIX/opt/bzip2/bin
 		$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin
 		$HOMEBREW_PREFIX/opt/curl/bin
 		$HOMEBREW_PREFIX/opt/grep/libexec/gnubin
