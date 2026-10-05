@@ -1,0 +1,147 @@
+#compdef gh
+
+# gh does not delegate completion to extensions, and gh-stack's own cobra
+# completion is unreachable. 900_completion.zsh binds gh (and the `gh stack
+# alias` wrapper) to this function: `gh stack ...` is completed here,
+# everything else goes to gh's _gh.
+if [[ $service == gh ]]; then
+	if [[ $words[2] != stack ]] || (( CURRENT == 2 )); then
+		(( $+functions[_gh] )) || autoload -Uz _gh
+		_gh "$@"
+		local ret=$?
+		# _gh runs `compdef _gh gh` on first load, take gh back
+		compdef _gh-stack gh
+		return ret
+	fi
+	shift words
+	(( CURRENT-- ))
+fi
+
+local curcontext=$curcontext state state_descr line ret=1
+typeset -A opt_args
+local -a args expl
+local -a remote=('--remote=[remote to use (defaults to auto-detected remote)]:remote:->remotes')
+local -a print_path=('--print-path[print the target worktree path instead of switching]')
+
+_arguments -C \
+	'(- *)'{-h,--help}'[show help]' \
+	'(- *)'{-v,--version}'[show version]' \
+	'1: :->cmds' \
+	'*:: :->args' && ret=0
+
+case $state in
+	cmds)
+		local -a cmds=(
+			'add:add a new branch on top of the current stack'
+			'checkout:checkout a stack by stack number, PR number, PR URL, or branch name'
+			'init:initialize a new stack'
+			'modify:interactively restructure a stack'
+			'unstack:remove a stack locally and on GitHub'
+			'view:view the current stack'
+			'link:link PRs into a stack on GitHub without local tracking'
+			'merge:merge a stack of pull requests'
+			'push:push active branches in the current stack to the remote'
+			'rebase:rebase a stack of branches'
+			'submit:create a stack of PRs on GitHub'
+			'sync:sync the current stack with the remote'
+			'bottom:check out the bottom branch of the stack'
+			'down:check out a branch further down in the stack'
+			'switch:interactively switch to another branch in the stack'
+			'top:check out the top branch of the stack'
+			'trunk:check out the trunk branch of the stack'
+			'up:check out a branch further up in the stack'
+			'alias:create a shell alias for gh stack'
+			'feedback:submit feedback for gh-stack'
+		)
+		_describe -t commands 'gh stack command' cmds && ret=0
+		;;
+	args)
+		curcontext=${curcontext%:*:*}:gh-stack-$words[1]:
+		case $words[1] in
+			init)
+				args=(
+					'(-b --base)'{-b+,--base=}'[trunk branch for stack]:branch:->branches'
+					'*:branch:->branches'
+				) ;;
+			add)
+				args=(
+					'(-A --all -u --update)'{-A,--all}'[stage all changes including untracked files]'
+					'(-A --all -u --update)'{-u,--update}'[stage changes to tracked files only]'
+					'(-m --message)'{-m+,--message=}'[create a commit with this message]:message: '
+					'1:new branch name: '
+				) ;;
+			view)
+				args=(
+					'--json[output stack data as JSON]'
+					'(-s --short)'{-s,--short}'[show compact output]'
+				) ;;
+			checkout)
+				args=($print_path '1:stack number, PR number, PR URL or branch:->branches') ;;
+			modify)
+				args=(
+					'(--continue)--abort[abort the modify session and restore the stack]'
+					'(--abort)--continue[continue after resolving conflicts]'
+				) ;;
+			unstack|delete)
+				args=('--local[only delete the stack locally]' '1:stack number: ') ;;
+			submit)
+				args=(
+					$remote
+					'--auto[use auto-generated PR titles without prompting]'
+					'--open[mark new and existing PRs as ready for review]'
+				) ;;
+			sync)
+				args=($remote '--prune[delete local branches for merged PRs]') ;;
+			rebase)
+				args=(
+					$remote
+					'(--continue)--abort[abort rebase and restore all branches]'
+					'(--abort)--continue[continue rebase after resolving conflicts]'
+					'(--preserve-dates)--committer-date-is-author-date[set the committer date to the author date]'
+					'(--committer-date-is-author-date)--preserve-dates[alias for --committer-date-is-author-date]'
+					'(--upstack)--downstack[only rebase branches from trunk to current branch]'
+					'(--downstack)--upstack[only rebase branches from current branch to top]'
+					'--no-trunk[skip trunk, only rebase stack branches onto each other]'
+					'1:branch:->branches'
+				) ;;
+			push)
+				args=($remote) ;;
+			link)
+				args=(
+					$remote
+					'--base=[base branch for the bottom of the stack]:branch:->branches'
+					'--open[mark new and existing PRs as ready for review]'
+					'*:branch or PR:->branches'
+				) ;;
+			merge)
+				args=(
+					'(--merge --merge-method --rebase --squash)--merge[merge with a merge commit]'
+					'(--merge --merge-method --rebase --squash)--merge-method=[merge method to use]:method:(merge squash rebase)'
+					'(--merge --merge-method --rebase --squash)--rebase[rebase and merge]'
+					'(--merge --merge-method --rebase --squash)--squash[squash and merge]'
+					'(-y --yes)'{-y,--yes}'[merge without prompting for confirmation]'
+					'1:stack or PR number: '
+				) ;;
+			up|down)
+				args=($print_path '1:number of branches: ') ;;
+			top|bottom|trunk)
+				args=($print_path) ;;
+			alias)
+				args=('--remove[remove a previously created alias]' '1:alias name: ') ;;
+			feedback)
+				args=('1:title: ') ;;
+		esac
+		_arguments -C '(- *)'{-h,--help}'[show help]' $args && ret=0
+
+		case $state in
+			branches)
+				_wanted branches expl branch compadd -- ${(f)"$(git for-each-ref --format='%(refname:short)' refs/heads 2>/dev/null)"} && ret=0
+				;;
+			remotes)
+				_wanted remotes expl remote compadd -- ${(f)"$(git remote 2>/dev/null)"} && ret=0
+				;;
+		esac
+		;;
+esac
+
+return ret

@@ -20,6 +20,14 @@ for _cd in $_compdef_queue; do
 done
 unset _compdef_queue _cd
 
+# _gh-stack completes `gh stack` and hands everything else to gh's own _gh.
+if type gh &>/dev/null; then
+	autoload -Uz _gh-stack
+	compdef _gh-stack gh
+	# gs is ghostscript unless it is the `gh stack alias gs` wrapper
+	[[ -n $commands[gs](#qNL-1024) && $(<$commands[gs]) == *'exec gh stack'* ]] && compdef _gh-stack gs
+fi
+
 zstyle ':completion:*'               matcher-list      'm:{a-z}={A-Z}'
 zstyle ':completion:*'               menu              no
 zstyle ':completion:*'               verbose           true
