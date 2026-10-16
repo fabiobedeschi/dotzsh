@@ -68,7 +68,7 @@ case $state in
 					'(-A --all -u --update)'{-A,--all}'[stage all changes including untracked files]'
 					'(-A --all -u --update)'{-u,--update}'[stage changes to tracked files only]'
 					'(-m --message)'{-m+,--message=}'[create a commit with this message]:message: '
-					'1:new branch name: '
+					'1:branch:->branches'
 				) ;;
 			view)
 				args=(
