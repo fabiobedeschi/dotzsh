@@ -28,6 +28,11 @@ if [[ -n $SWAYSOCK ]]; then
 	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
+# Docker Desktop per-user socket (macOS, no /var/run/docker.sock symlink)
+if [[ -d $HOME/.docker/run ]]; then
+    export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock
+fi
+
 # add "--mouse" option if tmux is enabled
 export LESS='-FR'
 export AWS_PAGER=$PAGER
